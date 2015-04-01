@@ -1,4 +1,7 @@
 Feature: Filter by shop type
+  As a guest user
+  In order to see merchandise for a specific sub-category
+  I want to be able to go to the specific sub-category of interest
 
   Background:
     Given I go to the Zappo's homepage

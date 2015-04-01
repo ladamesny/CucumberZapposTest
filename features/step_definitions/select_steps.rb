@@ -11,22 +11,24 @@ end
 When(/^I click (#{CAPTURE_MULTIPLE_WORDS})$/) do |link|
   if link == "Add to Cart"
     click_button(link)
-  # elsif link == "Don't see your size?"
-  #   click_link("#notifyMePopupLink")
   else
     click_link(link)
   end
 end
 
 When(/^the shoe (#{CAPTURE_MULTIPLE_WORDS}) in (#{CAPTURE_MULTIPLE_WORDS}) by (#{CAPTURE_MULTIPLE_WORDS}) is clicked$/) do |link, color, brand|
+  @color = color
   click_link(link, href: href_shoe(link, color, brand))
 end
 
 
-Then(/^fill out Notify Me form$/) do
-  within_window(page.driver.browser.window_handles.last) do
-    fill_in('Your Email:', with: 'larry@example.com')
-    # select('7', from: 'dimensionValueIds')
+Then(/^fill out form to notify me at (#{CAPTURE_MULTIPLE_WORDS}) when a (#{CAPTURE_MULTIPLE_WORDS}) size (#{CAPTURE_MULTIPLE_WORDS}) with (#{CAPTURE_MULTIPLE_WORDS}) width becomes available$/) do | email, color, size, width|
+  new_window = windows.last
+  page.within_window new_window do
+    fill_in('Your Email:', with: email)
+    select(color, from: 'styleId')
+    # select(size, from: 'dimensionValueIds')
+    # select(width, from: 'dimensionValueIds')
     click_button('Notify Me!')
   end
 end

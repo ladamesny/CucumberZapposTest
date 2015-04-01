@@ -1,7 +1,7 @@
 Feature: Select a shop
-  As a customer
-  I would like to select a shop at the start of my search
-  Who found a shoe of interest
+  As a guest user
+  In order to see merchandise for a specific category
+  I want to be able to go to the specific shop page from the home page
 
   Background:
     Given I go to the Zappo's homepage
